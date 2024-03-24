@@ -12,7 +12,9 @@ START=51
 
 SN=\$(echo -n \`uci -c /data/etc get binfo.binfo.sn\` | tail -c -4)
 MODEL=\$(uci -c /usr/share/mico get version.version.HARDWARE)
-echo "\$MODEL-\$SN" > /proc/sys/kernel/hostname
+HOSTNAME=\$( [ -f /data/custom/hostname.sh ] && /data/custom/hostname.sh || echo "\$MODEL-\$SN" )
+[[ -z "\$HOSTNAME" ]] && HOSTNAME="\$MODEL-\$SN"
+echo "\$HOSTNAME" > /proc/sys/kernel/hostname
 EOF
 
 chmod 755 $FILE
