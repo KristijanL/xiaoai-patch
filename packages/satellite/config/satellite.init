@@ -10,7 +10,7 @@ start_service() {
   /bin/shut_led 7 &
 
   procd_open_instance
-  procd_set_param command /data/satellite/launcher
+  procd_set_param command /usr/share/satellite/launcher
   procd_set_param respawn 3600 5 0
   procd_set_param pidfile ${PIDFILE}
   procd_close_instance
