@@ -16,7 +16,12 @@ install_package() {
 
 	cp -rv ${PACKAGE_SRC_DIR}/sounds ${PACKAGE_SRC_DIR}/wyoming_satellite ${PACKAGE_SRC_DIR}/script ${STAGING_DIR}/usr/share/satellite/
 
-	cp -rv ${PACKAGE_DIR}/config/venv ${STAGING_DIR}/usr/share/satellite/.venv
+	mkdir -p ${STAGING_DIR}/usr/share/satellite/.venv/include  ${STAGING_DIR}/usr/share/satellite/.venv/lib/python3.9/site-packages
+	pip install -r ${PACKAGE_SRC_DIR}/requirements.txt --target=/tmp/satellite
+	rm -rf /tmp/satellite/zeroconf*
+	cp -rv /tmp/satellite/* ${STAGING_DIR}/usr/share/satellite/.venv/lib/python3.9/site-packages
+	rm -rf /tmp/satellite
+
 	cp -v ${PACKAGE_DIR}/config/launcher ${STAGING_DIR}/usr/share/satellite/launcher
 }
 

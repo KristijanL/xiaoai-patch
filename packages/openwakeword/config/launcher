@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo 'START' > /tmp/openwakeword.log
+
+cd /data/openwakeword
+
+/data/openwakeword/script/run --uri 'tcp://0.0.0.0:10400' --preload-model 'alexa' \
+--debug >> /tmp/openwakeword.log 2>&1

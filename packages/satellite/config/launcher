@@ -11,6 +11,8 @@ cd /usr/share/satellite
 /usr/share/satellite/script/run --name $HOSTNAME --uri 'tcp://0.0.0.0:10700' --no-zeroconf \
 --mic-command 'arecord -r 16000 -c 1 -f S16_LE -t raw' \
 --snd-command 'aplay -D notify -r 22050 -c 1 -f S16_LE -t raw' \
+# --wake-uri 'tcp://127.0.0.1:10400' \
+# --wake-word-name 'alexa'  \
 --awake-wav sounds/awake.wav --done-wav sounds/done.wav \
 --startup-command '/bin/show_led 10' --detect-command '/bin/show_led 0' \
 --detection-command '/bin/show_led 1' --stt-stop-command '/bin/show_led 2' --transcript-command '/bin/show_led 0' \
